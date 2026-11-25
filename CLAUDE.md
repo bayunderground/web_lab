@@ -318,7 +318,7 @@ Known hardware and environment:
 - Raspberry Pi 5.
 - RAM: 8 GB.
 - Architecture: ARM64 / aarch64.
-- OS: Debian Bookworm.
+- OS: Debian 13 (trixie). Verified 2026-11-25 (`/etc/os-release`).
 - Kernel: 6.18.29+rpt-rpi-2712 (reported 2026-11-24).
 - Storage: microSD.
 - Cooling: active.
