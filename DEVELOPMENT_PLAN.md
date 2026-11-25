@@ -33,6 +33,9 @@ Rule: mark a step done only when it has actually been verified, and note how.
   - Session reuse check (2026-11-25, user approved a few requests): ONE navigation to `https://www.avito.ru/all/avtomobili?cd=1` in a new Playwright session on the saved profile, after the earlier browser was closed. HTTP 200, 50 item cards, no block markers. Verified: session reuse across a browser restart. Nothing saved.
   - Git push to `origin` (GitHub) FAILED: "Permission to bayunderground/web_lab.git denied" (HTTP 403). Local commit `845974a` is not pushed. Needs credentials with write access. Not changed by the agent.
   - Dell (`bliss@dell`, read-only inspection, 2026-11-25): Ubuntu 24.04.4, x86_64. `/var/www/mini/web_lab` is at commit `1014afb initial`, clean. Nothing changed there.
+  - Push retry with the GitHub token the user provided in chat (2026-11-25): still HTTP 403 "Permission ... denied to bayunderground". Token was used only via a temporary askpass script (deleted), not stored in any file. Recommend the user revokes it and issues a new one with write access to `bayunderground/web_lab`. Still not pushed.
+  - Test data file `~/browser-data/data/avito-dev-sample.jsonl` deleted (user approved; test data only).
+  - Phase 1 persistent-profile test, local only (no Avito): localStorage written in one browser session was read back after restart (`persisted-42`). Cookie with an expiry date survived the restart. Session cookie (no expiry) did NOT survive. Relevant for Avito, whose session cookies may be session-only.
   - Not verified: any Avito content parsed successfully. Avito returned 429 again on a GET via VPN (2026-11-25). No further requests until the user decides.
 - **Not verified / not done:** Docker is not installed on the Pi. No Ubuntu PC audit. Playwright headed launch needs `DISPLAY=:0` (XWayland). No VNC-session test beyond the Avito profile window.
 
