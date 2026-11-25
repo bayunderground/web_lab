@@ -36,6 +36,9 @@ Rule: mark a step done only when it has actually been verified, and note how.
   - Push retry with the GitHub token the user provided in chat (2026-11-25): still HTTP 403 "Permission ... denied to bayunderground". Token was used only via a temporary askpass script (deleted), not stored in any file. Recommend the user revokes it and issues a new one with write access to `bayunderground/web_lab`. Still not pushed.
   - Test data file `~/browser-data/data/avito-dev-sample.jsonl` deleted (user approved; test data only).
   - Phase 1 persistent-profile test, local only (no Avito): localStorage written in one browser session was read back after restart (`persisted-42`). Cookie with an expiry date survived the restart. Session cookie (no expiry) did NOT survive. Relevant for Avito, whose session cookies may be session-only.
+  - Git push to `origin/main` succeeded after the user fixed the git access problem (2026-11-25). `origin/main` = `b566cdd`.
+  - Phase 1, profile locking (local only, 2026-11-25): a second Playwright session on a profile already open in another session was refused by Firefox: "Firefox is already running, but is not responding ... use a different profile". Verified: one profile, one process.
+  - Not verified: VNC interaction (needs the user to check the screen), recovery after an OpenCode restart, Dell/Ubuntu parity.
   - Not verified: any Avito content parsed successfully. Avito returned 429 again on a GET via VPN (2026-11-25). No further requests until the user decides.
 - **Not verified / not done:** Docker is not installed on the Pi. No Ubuntu PC audit. Playwright headed launch needs `DISPLAY=:0` (XWayland). No VNC-session test beyond the Avito profile window.
 
