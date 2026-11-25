@@ -30,6 +30,9 @@ Rule: mark a step done only when it has actually been verified, and note how.
       - Search `https://www.avito.ru/all/avtomobili?cd=1`: HTTP 200, final URL unchanged. 50 item cards (`data-marker="item"`). Output `~/browser-data/data/avito-dev-sample.jsonl`: 50 rows, 50 non-empty titles, 50 unique hrefs, 50 with price.
       - Data quality notes (not validated against a schema): the price field can include credit text ("от 35 723 ₽ в месяц"). Hrefs carry a `?context=` tracking parameter. Location prompt still appears, and the profile has no stored geolocation permission record.
     - Deviation from CLAUDE.md 6.6: the script closed the browser on exit. Browser is no longer running. Profile preserved. Stopped because access is now restricted (CLAUDE.md 7, 8.3).
+  - Session reuse check (2026-11-25, user approved a few requests): ONE navigation to `https://www.avito.ru/all/avtomobili?cd=1` in a new Playwright session on the saved profile, after the earlier browser was closed. HTTP 200, 50 item cards, no block markers. Verified: session reuse across a browser restart. Nothing saved.
+  - Git push to `origin` (GitHub) FAILED: "Permission to bayunderground/web_lab.git denied" (HTTP 403). Local commit `845974a` is not pushed. Needs credentials with write access. Not changed by the agent.
+  - Dell (`bliss@dell`, read-only inspection, 2026-11-25): Ubuntu 24.04.4, x86_64. `/var/www/mini/web_lab` is at commit `1014afb initial`, clean. Nothing changed there.
   - Not verified: any Avito content parsed successfully. Avito returned 429 again on a GET via VPN (2026-11-25). No further requests until the user decides.
 - **Not verified / not done:** Docker is not installed on the Pi. No Ubuntu PC audit. Playwright headed launch needs `DISPLAY=:0` (XWayland). No VNC-session test beyond the Avito profile window.
 
