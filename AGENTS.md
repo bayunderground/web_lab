@@ -76,3 +76,14 @@ Do not assume root. Do not get around an approval requirement with another comma
 ## 10. When uncertain
 
 Stop and ask the user. One clear question is better than a wrong assumption.
+
+## 11. Avito test parse (runbook, verified 2026-11-27)
+
+Run: `~/.venvs/web-lab-playwright/bin/python parsing/run_avito_search.py` (needs `DISPLAY=:0`, Wayland labwc session with XWayland).
+
+- It opens `~/browser-data/profiles/avito` in headed Firefox, navigates once to the search page, and PAUSES if Avito shows a challenge page. The user completes the challenge in that window over VNC; extraction continues in the same session. Never solve the challenge, never mask automation (CLAUDE.md 8.3).
+- When asking the user to act, name the exact window (the parser's profile). A second Firefox with the user's default profile is usually running; a challenge completed there does not help the parser.
+- Do not open the profile in two Firefox processes (CLAUDE.md 6.2).
+- Output is test data under `~/browser-data/data/` and `~/browser-data/logs/`, outside Git. Delete only with user approval.
+- If the challenge page appears on every run, the profile's session is flagged. With user approval, reset it by deleting the Avito cookies from the profile (exact command in `docs/experiments/avito-access-recovery-2026-11-27.md`, "Recovery procedure"). Never mask automation or solve challenges (CLAUDE.md 8.3).
+- Success is validated by content (cards, fields), not by HTTP status: Avito can deliver the real page after a self-resolving security check (439 + full content observed).

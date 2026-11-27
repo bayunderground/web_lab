@@ -778,6 +778,13 @@ Do not assume that the website is accessible through the Ubuntu PC.
 
 The Pi is the initial reference environment.
 
+Verified findings (2026-11-27, see `docs/experiments/avito-access-recovery-2026-11-27.md`):
+
+- Browser rendering is required: plain HTTP and TLS-impersonated HTTP are rejected by QRATOR (403, 429, 439).
+- The QRATOR block is tied to profile session state, not to the IP or automation: a fresh profile on the same machine works while a flagged profile keeps getting 429 + hCaptcha.
+- Recovery is human-assisted (section 7.1) and must happen in the parser's own profile, with extraction continuing in the same browser session. A challenge completed in a different Firefox profile does not help, and closing the browser before extraction may lose the clearance (short-lived session cookies).
+- The test parse runner is `parsing/run_avito_search.py`: one navigation, pause for the human when challenged, schema fields only, request log kept.
+
 ## 8.3 Anti-bot and access restrictions
 
 The goal is reliable and maintainable access to permitted website content.
